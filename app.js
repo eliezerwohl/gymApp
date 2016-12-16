@@ -6,6 +6,9 @@ var logger = require("morgan");
 app.use(logger('dev'));
 app.use(express.static(__dirname + '/public'));
 
+require('./routes')(app);
+
+
 app.listen(PORT, function(){
 	console.log("listening on " + PORT)
 })
