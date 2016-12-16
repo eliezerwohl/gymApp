@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/eliezerwohl/gymApp/issues"
   },
-  "homepage": "https://github.com/eliezerwohl/gymApp#readme"
+  "homepage": "https://github.com/eliezerwohl/gymApp#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "morgan": "^1.7.0"
+  }
 }
