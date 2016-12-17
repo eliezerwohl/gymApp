@@ -1,4 +1,8 @@
 function loadXMLDoc() {
+  var object1 = {
+    "we":"are",
+    "showRoom":"dummies"
+  }
     var xmlhttp = new XMLHttpRequest();
 
     xmlhttp.onreadystatechange = function() {
@@ -15,8 +19,9 @@ function loadXMLDoc() {
         }
     };
 
-    xmlhttp.open("GET", "test", true);
-    xmlhttp.send();
+    xmlhttp.open("POST", "posttest", true);
+    xmlhttp.setRequestHeader("Content-type", "application/json");
+    xmlhttp.send(JSON.stringify(object1));
 }
 
 loadXMLDoc()
