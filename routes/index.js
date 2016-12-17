@@ -8,7 +8,8 @@ module.exports = function(app) {
 		sendFunc(res, "page");
 	});
 
-	app.get("/test", function(req, res){
+	app.post("/posttest", function(req, res){
+		debugger
 		res.send("you did a post request")
 	})
 		app.get("/", function(req, res){
