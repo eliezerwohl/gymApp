@@ -1,16 +1,21 @@
+
 function sendFunc(res, string){
 	res.sendFile(process.cwd() + "/public/views/" + string +".html");
 }
 
-module.exports = function(app) {
+module.exports = function(app,connection) {
 
 	app.get("/home", function(req, res){
 		sendFunc(res, "page");
 	});
 
 	app.post("/posttest", function(req, res){
-		debugger
-		res.send("you did a post request")
+	connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
+  	if (err) throw err;
+  	debugger
+	  res.sendStatus(rows[0].solution);
+
+		});
 	})
 		app.get("/", function(req, res){
 		sendFunc(res, "home");
