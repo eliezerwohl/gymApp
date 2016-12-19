@@ -1,12 +1,6 @@
 function request(type,url,data, done) {
-
-  var object1 = {
-    "we":"are",
-    "showRoom":"dummies"
-  }
     var xmlhttp = new XMLHttpRequest();
     var testVar;
-
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
            if (xmlhttp.status == 200) {
@@ -17,7 +11,7 @@ function request(type,url,data, done) {
               alert('There was an error 400');
            }
            else {
-               alert('something else other than 200 was returned');
+               done(xmlhttp.responseText);
            }
         }
     };
