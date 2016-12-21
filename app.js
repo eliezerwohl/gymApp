@@ -10,6 +10,21 @@ var connection = mysql.createConnection({
   password:password.password,
   database : 'testdb'
 });
+connection.query("SHOW TABLES LIKE 'yourtable';", function(err, rows, fields) {
+	debugger
+  	if (err) throw err;
+  	console.log(err)
+  	if (rows.length > 0) {
+  		console.log("Db exists")
+  	}
+  	else{
+  		//create table
+  		console.log("creating table")
+  	}
+ 
+});
+
+
  
 var logger = require("morgan");
 var bodyParser = require('body-parser')
