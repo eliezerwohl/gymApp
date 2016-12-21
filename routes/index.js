@@ -2,7 +2,12 @@
 function sendFunc(res, string){
 	res.sendFile(process.cwd() + "/public/views/" + string +".html");
 }
-
+function queryFunc(connection, string,  callback){
+connection.query(string, function(err, rows, fields) {
+  	if (err) throw err;
+  	callback(rows)
+		});
+}
 module.exports = function(app,connection) {
 
 	app.get("/home", function(req, res){
@@ -10,12 +15,10 @@ module.exports = function(app,connection) {
 	});
 
 	app.post("/posttest", function(req, res){
-	connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
-  	if (err) throw err;
-  	debugger
-	  res.sendStatus(rows[0].solution);
-
-		});
+		var string = "SELECT 1 + 1 AS solution"
+		queryFun(cconnection, string, function(returnData){
+			debugger
+		})
 	})
 		app.get("/", function(req, res){
 		sendFunc(res, "home");
