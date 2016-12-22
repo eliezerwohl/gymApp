@@ -9,17 +9,20 @@ var connection = mysql.createConnection({
   user     : 'root',
   port: 3306,
   password:password.password,
-  database : 'testdb'
+  database : 'gymappdb'
 });
-connection.query("SHOW TABLES LIKE 'user';", function(err, rows, fields) {
-  	if (err) throw err;
-  	if (rows.length > 0) {
-  		console.log("Db exists")
-  	}
-  	else{
-  		table.createTable(connection);
-  	}
-});
+
+
+table.queryFunc(connection, table.showTables(), function(rows){
+   if (rows.length > 0) {
+     console.log("Db exists")
+   }
+   else{
+    console.log("create db")
+    table.createTable(connection);
+   }
+})
+
 var logger = require("morgan");
 var bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -27,7 +30,7 @@ app.use(bodyParser.json());
 app.use(logger('dev'));
 app.use(express.static(__dirname + '/public'));
 
-require('./routes')(app, connection);
+require('./routes')(app, connection, table);
 
 
 app.listen(PORT, function(){
